@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-xtravel-dev-151345-authRole",
+      "UnauthRoleArn": "arn:aws:iam::940168446867:role/amplify-xtravel-dev-151345-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::940168446867:role/amplify-xtravel-dev-151345-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-xtravel-dev-151345-deployment",
+      "UnauthRoleName": "amplify-xtravel-dev-151345-unauthRole",
+      "StackName": "amplify-xtravel-dev-151345",
+      "StackId": "arn:aws:cloudformation:us-east-2:940168446867:stack/amplify-xtravel-dev-151345/83fc6120-d5a8-11ec-95e2-02e30488a96e",
+      "AmplifyAppId": "d3t6w2qkf9fcyl"
+    }
+  }
+}
