@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Xtravel"
         android:name=".MyAmplifyApp">
         <activity
-            android:name=".dummy"
+            android:name=".dummyActivity"
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
