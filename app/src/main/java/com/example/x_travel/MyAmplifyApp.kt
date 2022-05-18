@@ -24,5 +24,4 @@ class MyAmplifyApp: Application() {
     }
 
 
-
 }
