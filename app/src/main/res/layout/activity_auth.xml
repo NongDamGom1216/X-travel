@@ -1,94 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AuthActivity"
+    android:gravity="center"
     android:orientation="vertical"
-    android:gravity="center">
-
+    tools:context=".AuthActivity">
 
     <LinearLayout
-
-        android:layout_width="wrap_content"
+        android:id="@+id/signin_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        >
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/login_id_text"
-            android:layout_width="90dp"
-            android:layout_height="30dp"
-            android:text="이메일"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
 
-        <EditText
-            android:id="@+id/login_id"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:inputType="textEmailAddress" />
+            <EditText
+                android:id="@+id/login_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="이메일"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <EditText
+                android:id="@+id/login_paw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="비밀번호"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/signIn_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="35dp"
+                android:layout_weight="1"
+                android:text="로그인" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/signUp_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="35dp"
+                android:layout_weight="1"
+                android:text="회원가입" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/forgot_Password_button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="35dp"
+            android:text="비밀번호 찾기" />
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:gravity="center"
+        android:text="X-travel"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#76ABD5"
+        android:textSize="96sp"
+        android:textStyle="bold|italic" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:id="@+id/login_paw_text"
-            android:layout_width="90dp"
-            android:layout_height="30dp"
-            android:text="비밀번호"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/login_paw"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:inputType="textPassword" />
-
-
-    </LinearLayout>
-
-
-    <Button
-        android:id="@+id/signIn_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="로그인"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
-    <Button
-        android:id="@+id/forgot_Password_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="비밀번호를 잊어버리셨나요?"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
-
-    <Button
-        android:id="@+id/signUp_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="회원가입"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
-
-
-
-
-
-</LinearLayout>
+</RelativeLayout>
