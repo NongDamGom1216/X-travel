@@ -3,17 +3,22 @@ package com.example.x_travel
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import com.amazonaws.mobile.client.AWSMobileClient
 import com.amazonaws.mobile.client.Callback
 import com.amazonaws.mobile.client.UserStateDetails
+import com.amplifyframework.core.Amplify
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val signOut_button = findViewById<Button>(R.id.signOut_button) // 로그아웃 버튼
+
+        val temp_btn = findViewById<Button>(R.id.tempButton)//임시 버튼
 
         // 로그아웃 버튼
         signOut_button.setOnClickListener {
@@ -30,6 +35,21 @@ class MainActivity : AppCompatActivity() {
 
                     override fun onError(e: Exception) {}
                 })
+        }
+
+        // s3 업로드 테스트용 임시버튼
+
+        temp_btn.setOnClickListener {
+
+            val exampleFile = File(applicationContext.filesDir, "ExampleKey")
+            exampleFile.writeText("Example file contents")
+
+            Amplify.Storage.uploadFile(
+                System.currentTimeMillis().toString(),
+                exampleFile,
+                { result -> Log.d("MyAmplifyApp", "Successfully uploaded: " + result) },
+                { error -> Log.d("MyAmplifyApp", "Upload failed", error) }
+            )
         }
     }
 
