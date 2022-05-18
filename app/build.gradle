@@ -26,6 +26,8 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        // Support for Java 8 features
+        coreLibraryDesugaringEnabled true
     }
     kotlinOptions {
         jvmTarget = '1.8'
@@ -50,6 +52,15 @@ dependencies {
     // 로그인 UI 라이브러리
     implementation('com.amazonaws:aws-android-sdk-auth-ui:2.8.+@aar') { transitive = true }
 
+    // Amplify core dependency
+    implementation 'com.amplifyframework:core:1.16.11'
+
+    // Support for Java 8 features
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
+
+    //s3
+    implementation 'com.amplifyframework:aws-storage-s3:1.6.11'
+    implementation 'com.amplifyframework:aws-auth-cognito:1.6.11'
 
 
 

@@ -3,13 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_auth.xml" value="0.1" />
+        <entry key="..\:/Users/JHJ/Documents/GitHub/X-travel/app/src/main/res/layout/activity_auth.xml" value="0.1125" />
+        <entry key="..\:/Users/JHJ/Documents/GitHub/X-travel/app/src/main/res/layout/activity_dummy.xml" value="0.1125" />
+        <entry key="..\:/Users/JHJ/Documents/GitHub/X-travel/app/src/main/res/layout/activity_dummy2.xml" value="0.1125" />
+        <entry key="..\:/Users/JHJ/Documents/GitHub/X-travel/app/src/main/res/layout/activity_forgot.xml" value="0.1125" />
+        <entry key="..\:/Users/JHJ/Documents/GitHub/X-travel/app/src/main/res/layout/activity_main.xml" value="0.1125" />
+        <entry key="..\:/Users/JHJ/Documents/GitHub/X-travel/app/src/main/res/layout/activity_ok.xml" value="0.1125" />
         <entry key="app/src/main/res/layout/activity_authentication.xml" value="0.1381340579710145" />
-        <entry key="app/src/main/res/layout/activity_forgot.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_ok.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1381340579710145" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.1381340579710145" />
-        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.165" />
       </map>
     </option>
   </component>
