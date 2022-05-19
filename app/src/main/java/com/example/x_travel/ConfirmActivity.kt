@@ -22,6 +22,8 @@ class ConfirmActivity : AppCompatActivity() {
         binding = ActivityConfirmBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        //일단 이렇게
         var photoUri : Uri? = getIntent().getParcelableExtra("photo")
         val imageBitmap = photoUri?.let { ImageDecoder.createSource(this.contentResolver, it) }
         binding.confirm.setImageBitmap(imageBitmap?.let { ImageDecoder.decodeBitmap(it) })
