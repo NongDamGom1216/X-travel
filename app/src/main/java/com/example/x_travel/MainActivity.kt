@@ -44,12 +44,14 @@ class MainActivity : AppCompatActivity() {
             val exampleFile = File(applicationContext.filesDir, "ExampleKey")
             exampleFile.writeText("Example file contents")
 
-            Amplify.Storage.uploadFile(
-                System.currentTimeMillis().toString(),
-                exampleFile,
-                { result -> Log.d("MyAmplifyApp", "Successfully uploaded: " + result) },
-                { error -> Log.d("MyAmplifyApp", "Upload failed", error) }
-            )
+//            Amplify.Storage.uploadFile(
+//                System.currentTimeMillis().toString(),
+//                exampleFile,
+//                { result -> Log.d("MyAmplifyApp", "Successfully uploaded: " + result) },
+//                { error -> Log.d("MyAmplifyApp", "Upload failed", error) }
+//            )
+
+//            MyAmplifyApp.uploadFile()
         }
     }
 
