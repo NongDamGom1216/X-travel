@@ -1,11 +1,14 @@
 package com.example.x_travel
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Button
+import com.amplifyframework.core.Amplify
+import java.io.FileNotFoundException
 
 class TestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,10 +18,11 @@ class TestActivity : AppCompatActivity() {
 
         val test_btn = findViewById<Button>(R.id.testButton)//임시 버튼
 
+        test_btn.setOnClickListener {
 
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = MediaStore.Images.Media.CONTENT_TYPE
-        startActivityForResult(intent, REQUEST_STORAGE)
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = MediaStore.Images.Media.CONTENT_TYPE
+            startActivityForResult(intent, REQUEST_STORAGE)
 //
 //            val exampleFile = File(applicationContext.filesDir, "ExampleKey")
 //            exampleFile.writeText("Example file contents")
@@ -32,13 +36,16 @@ class TestActivity : AppCompatActivity() {
 
 //            MyAmplifyApp.uploadFile()
 
-        val PERMISSION_Album = 101 // 앨범 권한 처리
+            val PERMISSION_Album = 101 // 앨범 권한 처리
 
 //            requirePermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), PERMISSION_Album)
 
-        val intent1 = Intent(Intent.ACTION_PICK)
-        intent1.type = MediaStore.Images.Media.CONTENT_TYPE
-        startActivityForResult(intent1, REQUEST_STORAGE)
+            val intent1 = Intent(Intent.ACTION_PICK)
+            intent1.type = MediaStore.Images.Media.CONTENT_TYPE
+            startActivityForResult(intent1, REQUEST_STORAGE)
+
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -52,6 +59,7 @@ class TestActivity : AppCompatActivity() {
 //                            uri ->
 //                        imageView.setImageURI(uri)
                         Log.i("result", it.toString())
+                        uploadInputStream(it)
                     }
                 }
             }
@@ -60,6 +68,20 @@ class TestActivity : AppCompatActivity() {
 
     val REQUEST_STORAGE = 1234
 
+    fun uploadInputStream(uri: Uri) {
+        val stream = contentResolver.openInputStream(uri)
+
+        if (stream != null) {
+            try {
+                Amplify.Storage.uploadInputStream("ExampleKey", stream,
+                    { Log.i("MyAmplifyApp", "Successfully uploaded: ${it.key}") },
+                    { Log.e("MyAmplifyApp", "Upload failed", it) }
+                )
+            } catch (error: FileNotFoundException) {
+                Log.e("MyAmplifyApp", "Could not find file to open for input stream.", error)
+            }
+        }
+    }
 
 //    fun requirePermissions(permissions: Array<String>, requestCode: Int) {
 //        Log.d("requirePermissions","권한 요청")
