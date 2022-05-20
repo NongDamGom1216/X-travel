@@ -29,8 +29,6 @@ import java.io.FileOutputStream
 import java.io.OutputStream
 import java.text.SimpleDateFormat
 
-val requestNum = 10
-
 class MainActivity : AppCompatActivity() {
     private var selectedIndex: Int = 0;
     val PERMISSIONS_REQUEST = 100
@@ -98,7 +96,12 @@ class MainActivity : AppCompatActivity() {
             selectedIndex = 0;
         }
         v2.setOnClickListener {
-            if (selectedIndex == 1) return@setOnClickListener
+            if (selectedIndex == 1) {
+                val intent = Intent(Intent.ACTION_GET_CONTENT)
+                intent.setType("image/*")
+                startActivityForResult(intent,GALLERY)
+
+            }
 
             if (selectedIndex == 2) {
                 motionLayout.setTransition(R.id.s3, R.id.s2)  //red to orange transition
@@ -126,6 +129,15 @@ class MainActivity : AppCompatActivity() {
                     val i = Intent(this@MainActivity, ConfirmActivity::class.java)
                     i.putExtra("photo", photoUri)
                     startActivity(i)
+                }
+                GALLERY -> {
+                    var Imagedata: Uri? = data?.data
+                    try {
+                        val i = Intent(this@MainActivity, ConfirmActivity::class.java)
+                        i.putExtra("album", Imagedata)
+                        startActivity(i)
+                    } catch (e:Exception) { e.printStackTrace() }
+
                 }
             }
         }
