@@ -6,10 +6,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
+import android.location.LocationManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -21,8 +23,10 @@ import androidx.core.content.FileProvider
 import androidx.navigation.ui.AppBarConfiguration
 import com.amazonaws.mobile.client.AWSMobileClient
 import com.amazonaws.mobile.client.Callback
+import com.amazonaws.mobile.client.UserState
 import com.amazonaws.mobile.client.UserStateDetails
 import com.example.x_travel.databinding.ActivityMainBinding
+import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.android.synthetic.main.views.*
 import java.io.File
 import java.io.FileOutputStream
@@ -50,6 +54,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private val TAG = MainActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +69,25 @@ class MainActivity : AppCompatActivity() {
         val v2 = findViewById<View>(R.id.v2)
         val v3 = findViewById<View>(R.id.v3)
 
+
+        // 로그인이 되어있는지 확인
+        AWSMobileClient.getInstance()
+            .initialize(applicationContext, object : Callback<UserStateDetails> {
+                override fun onResult(userStateDetails: UserStateDetails) {
+                    Log.i(TAG, userStateDetails.userState.toString())
+
+                    // 로그인이 안되어있으면 AuthActivity 로 이동
+                    if (userStateDetails.userState != UserState.SIGNED_IN) {
+                        val i = Intent(this@MainActivity, AuthActivity::class.java)
+                        startActivity(i)
+                        finish()
+                    }
+                }
+
+                override fun onError(e: Exception) {
+                    Log.e(TAG, e.toString())
+                }
+            })
 
 
         v1.setOnClickListener {
@@ -100,12 +124,12 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(Intent.ACTION_GET_CONTENT)
                 intent.setType("image/*")
                 startActivityForResult(intent,GALLERY)
-
             }
 
             if (selectedIndex == 2) {
                 motionLayout.setTransition(R.id.s3, R.id.s2)  //red to orange transition
-            } else {
+            }
+            if (selectedIndex == 0){
                 motionLayout.setTransition(R.id.s1, R.id.s2) //blue to orange transition
             }
             motionLayout.transitionToEnd()
