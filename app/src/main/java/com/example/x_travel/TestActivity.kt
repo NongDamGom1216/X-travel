@@ -19,10 +19,6 @@ class TestActivity : AppCompatActivity() {
         val test_btn = findViewById<Button>(R.id.testButton)//임시 버튼
 
         test_btn.setOnClickListener {
-
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = MediaStore.Images.Media.CONTENT_TYPE
-            startActivityForResult(intent, REQUEST_STORAGE)
 //
 //            val exampleFile = File(applicationContext.filesDir, "ExampleKey")
 //            exampleFile.writeText("Example file contents")
@@ -56,6 +52,12 @@ class TestActivity : AppCompatActivity() {
 
                 REQUEST_STORAGE -> {
                     data?.data?.let {
+//
+//                        val todo = Todo.builder()
+//                            .name("My first todo")
+//                            .description("todo description")
+//                            .build()
+
 //                            uri ->
 //                        imageView.setImageURI(uri)
                         Log.i("result", it.toString())
@@ -70,10 +72,11 @@ class TestActivity : AppCompatActivity() {
 
     fun uploadInputStream(uri: Uri) {
         val stream = contentResolver.openInputStream(uri)
+        val millisecond= System.currentTimeMillis().toString()
 
         if (stream != null) {
             try {
-                Amplify.Storage.uploadInputStream("ExampleKey", stream,
+                Amplify.Storage.uploadInputStream(millisecond, stream,
                     { Log.i("MyAmplifyApp", "Successfully uploaded: ${it.key}") },
                     { Log.e("MyAmplifyApp", "Upload failed", it) }
                 )

@@ -62,5 +62,10 @@ dependencies {
     implementation 'com.amplifyframework:aws-storage-s3:1.6.11'
     implementation 'com.amplifyframework:aws-auth-cognito:1.6.11'
 
+    //s3 storage
+    implementation 'com.amazonaws:aws-android-sdk-s3:2.44.0'
+    implementation 'com.amazonaws:aws-android-sdk-mobile-client:2.44.0'
+    implementation 'com.amazonaws:aws-android-sdk-auth-userpools:2.44.0'
+
 
 }
