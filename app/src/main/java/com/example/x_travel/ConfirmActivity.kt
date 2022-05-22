@@ -39,6 +39,7 @@ class ConfirmActivity : AppCompatActivity() {
             Toast.makeText(this, photoUri?.path, Toast.LENGTH_LONG).show()
 
             //위도, 경도
+            
             var path = createCopyAndReturnRealPath(photoUri!!)
             val exif = ExifInterface(path!!)
             binding.latitude.text = exif.latLong?.get(0).toString()
