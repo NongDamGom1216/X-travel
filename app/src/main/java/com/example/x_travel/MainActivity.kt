@@ -3,14 +3,12 @@ package com.example.x_travel
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import com.amazonaws.mobile.client.AWSMobileClient
 import com.amazonaws.mobile.client.Callback
 import com.amazonaws.mobile.client.UserStateDetails
-import com.amplifyframework.core.Amplify
-import java.io.File
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,21 +35,12 @@ class MainActivity : AppCompatActivity() {
                 })
         }
 
-        // s3 업로드 테스트용 임시버튼
-
+        // s3 업로드 테스트용 임시페이지 이동버튼
         temp_btn.setOnClickListener {
 
-            val exampleFile = File(applicationContext.filesDir, "ExampleKey")
-            exampleFile.writeText("Example file contents")
+            val nextIntent = Intent(this, TestActivity::class.java)
+            startActivity(nextIntent)
 
-//            Amplify.Storage.uploadFile(
-//                System.currentTimeMillis().toString(),
-//                exampleFile,
-//                { result -> Log.d("MyAmplifyApp", "Successfully uploaded: " + result) },
-//                { error -> Log.d("MyAmplifyApp", "Upload failed", error) }
-//            )
-
-//            MyAmplifyApp.uploadFile()
         }
     }
 
@@ -75,4 +64,6 @@ class MainActivity : AppCompatActivity() {
             toast = Toast.makeText(applicationContext, "'뒤로'버튼 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT)
         }
     }
+
+
 }

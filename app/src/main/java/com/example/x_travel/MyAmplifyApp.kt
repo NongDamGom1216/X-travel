@@ -19,8 +19,9 @@ class MyAmplifyApp: Application() {
         try {
             Amplify.addPlugin(AWSCognitoAuthPlugin())
             Amplify.addPlugin(AWSS3StoragePlugin())
+//            Amplify.addPlugin(AWSApiPlugin())
             Amplify.configure(applicationContext)
-            uploadFile()
+//            uploadFile()
 
             Log.i("MyAmplifyApp", "Initialized Amplify")
         } catch (error: AmplifyException) {
