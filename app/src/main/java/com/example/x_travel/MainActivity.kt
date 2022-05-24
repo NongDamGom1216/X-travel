@@ -33,6 +33,7 @@ import java.io.FileOutputStream
 import java.io.OutputStream
 import java.text.SimpleDateFormat
 
+
 class MainActivity : AppCompatActivity() {
     private var selectedIndex: Int = 0;
     val PERMISSIONS_REQUEST = 100
@@ -59,6 +60,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         checkPermissions(PERMISSIONS, PERMISSIONS_REQUEST)
@@ -78,6 +80,7 @@ class MainActivity : AppCompatActivity() {
 
                     // 로그인이 안되어있으면 AuthActivity 로 이동
                     if (userStateDetails.userState != UserState.SIGNED_IN) {
+
                         val i = Intent(this@MainActivity, AuthActivity::class.java)
                         startActivity(i)
                         finish()
@@ -248,6 +251,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+
+//         // s3 업로드 테스트용 임시페이지 이동버튼
+//         temp_btn.setOnClickListener {
+
+//             val nextIntent = Intent(this, TestActivity::class.java)
+//             startActivity(nextIntent)
+
+        }
     }
 
     // 뒤로가기 2번 눌러야 종료
@@ -270,4 +281,6 @@ class MainActivity : AppCompatActivity() {
             toast = Toast.makeText(applicationContext, "'뒤로'버튼 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT)
         }
     }
+
+
 }
