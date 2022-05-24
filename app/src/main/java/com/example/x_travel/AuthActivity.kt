@@ -28,24 +28,7 @@ class AuthActivity : AppCompatActivity() {
         val forgot_Password_button =
             findViewById<Button>(R.id.forgot_Password_button) // 비밀번호를 잊어버리셨나요?
 
-        // 로그인이 되어있는지 확인
-        AWSMobileClient.getInstance()
-            .initialize(applicationContext, object : Callback<UserStateDetails> {
-                override fun onResult(userStateDetails: UserStateDetails) {
-                    Log.i(TAG, userStateDetails.userState.toString())
-
-                    // 로그인이 되어있으면 MainActivity 로 이동
-                    if (userStateDetails.userState == UserState.SIGNED_IN) {
-                        val i = Intent(this@AuthActivity, MainActivity::class.java)
-                        startActivity(i)
-                        finish()
-                    }
-                }
-
-                override fun onError(e: Exception) {
-                    Log.e(TAG, e.toString())
-                }
-            })
+        Toast.makeText(applicationContext, "로그인이 필요한 서비스입니다", Toast.LENGTH_LONG).show()
 
         // 로그인 버튼
         signIn_button.setOnClickListener { showSignIn() }

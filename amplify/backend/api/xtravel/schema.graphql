@@ -4,9 +4,6 @@ input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONL
 
 type Todo @model {
   id: ID!
-  index: Int
-  created_date: AWSDateTime
-  modified_date: AWSDateTime
-  text: String
-  photo: AWSURL
+  name: String!
+  description: String
 }
