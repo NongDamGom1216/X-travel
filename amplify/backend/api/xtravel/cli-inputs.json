@@ -1,13 +1,19 @@
 {
   "version": 1,
   "serviceConfiguration": {
-    "apiName": "xtravel",
+    "apiName": "Xtravel",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/Users/hyunjinjeong/AndroidStudioProjects/Xtravel/amplify/backend/api/xtravel/schema.graphql",
+    "gqlSchemaPath": "/tmp/amplify-fa271a39-ade7-4c43-a8b7-ebaaadfe46cd/amplify/backend/api/Xtravel/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
-      "expirationTime": 7
+      "keyDescription": "api key description",
+      "expirationTime": 30
     },
+    "additionalAuthTypes": [
+      {
+        "mode": "AWS_IAM"
+      }
+    ],
     "conflictResolution": {
       "defaultResolutionStrategy": {
         "type": "AUTOMERGE"

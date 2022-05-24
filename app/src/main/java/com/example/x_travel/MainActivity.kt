@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
         val v2 = findViewById<View>(R.id.v2)
         val v3 = findViewById<View>(R.id.v3)
 
+        AmplifyInit().intializeAmplify(this@MainActivity)
 
         // 로그인이 되어있는지 확인
         AWSMobileClient.getInstance()
