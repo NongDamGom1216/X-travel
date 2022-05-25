@@ -24,27 +24,29 @@ class ConfirmActivity : AppCompatActivity() {
         binding = ActivityConfirmBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        var photoUri : Uri? = null
+        lateinit var filename_photo : String
+
+        var Imagedata : Uri? = null
+        lateinit var filename_album : String
+
         try {
-            var photoUri: Uri? = getIntent().getParcelableExtra("photo")
+            photoUri= getIntent().getParcelableExtra("photo")
             val imageBitmap = photoUri?.let { ImageDecoder.createSource(this.contentResolver, it) }
             binding.confirm.setImageBitmap(imageBitmap?.let { ImageDecoder.decodeBitmap(it) })
-            val filename = "photodata/"+ photoUri?.lastPathSegment
-            if (photoUri != null) {
-                uploadFile(filename, photoUri)
-            }
+            filename_photo = "Imagedata/"+ photoUri?.lastPathSegment
+
             Toast.makeText(this, photoUri?.path, Toast.LENGTH_LONG).show()
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
         try {
-            var Imagedata: Uri? = getIntent().getParcelableExtra("album")
+            Imagedata = getIntent().getParcelableExtra("album")
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, Imagedata)
             binding.confirm.setImageBitmap(bitmap)
-            val filename = "Imagedata/"+ Imagedata?.lastPathSegment + ".jpg"
-            if (Imagedata != null) {
-                uploadFile(filename, Imagedata)
-            }
+            filename_album = "Imagedata/"+ Imagedata?.lastPathSegment + ".jpg"
+
 
 
             Toast.makeText(this, Imagedata?.path, Toast.LENGTH_LONG).show()
@@ -58,6 +60,16 @@ class ConfirmActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+
+        binding.downloadButton.setOnClickListener {
+            if (photoUri != null) {
+                uploadFile(filename_photo, photoUri)
+            }
+            if (Imagedata != null) {
+                uploadFile(filename_album, Imagedata)
+            }
+        }
+
     }
 
     ////////////////// uploading data to s3

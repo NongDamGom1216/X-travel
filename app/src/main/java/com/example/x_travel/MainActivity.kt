@@ -137,10 +137,15 @@ class MainActivity : AppCompatActivity() {
             selectedIndex = 1;
         }
         v3.setOnClickListener {
-            if (selectedIndex == 2) return@setOnClickListener
+            if (selectedIndex == 2) {
+                val profileIntent = Intent(this, ProfileActivity::class.java)
+                startActivity(profileIntent)
+            }
 
-            motionLayout.setTransition(R.id.s2, R.id.s3) //orange to red transition
-            motionLayout.transitionToEnd()
+            if (selectedIndex == 1) {
+                motionLayout.setTransition(R.id.s2, R.id.s3) //orange to red transition
+                motionLayout.transitionToEnd()
+            }
             selectedIndex = 2;
         }
 
