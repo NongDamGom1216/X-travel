@@ -9,12 +9,14 @@ import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.amazonaws.mobile.client.AWSMobileClient
 import com.amplifyframework.core.Amplify
 import com.example.x_travel.databinding.ActivityConfirmBinding
 
 
 
 private lateinit var binding: ActivityConfirmBinding
+private lateinit var auth: AWSMobileClient
 
 class ConfirmActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.P)
@@ -30,13 +32,16 @@ class ConfirmActivity : AppCompatActivity() {
         var Imagedata : Uri? = null
         lateinit var filename_album : String
 
+        auth = AWSMobileClient.getInstance()
+        val sub = auth.userSub
+
         try {
             photoUri= getIntent().getParcelableExtra("photo")
             val imageBitmap = photoUri?.let { ImageDecoder.createSource(this.contentResolver, it) }
             binding.confirm.setImageBitmap(imageBitmap?.let { ImageDecoder.decodeBitmap(it) })
-            filename_photo = "Imagedata/"+ photoUri?.lastPathSegment
+            filename_photo = sub + "/Imagedata/"+ photoUri?.lastPathSegment
 
-            Toast.makeText(this, photoUri?.path, Toast.LENGTH_LONG).show()
+//            Toast.makeText(this, photoUri?.path, Toast.LENGTH_LONG).show()
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -45,11 +50,11 @@ class ConfirmActivity : AppCompatActivity() {
             Imagedata = getIntent().getParcelableExtra("album")
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, Imagedata)
             binding.confirm.setImageBitmap(bitmap)
-            filename_album = "Imagedata/"+ Imagedata?.lastPathSegment + ".jpg"
+            filename_album = sub + "/Imagedata/"+ Imagedata?.lastPathSegment + ".jpg"
 
 
-
-            Toast.makeText(this, Imagedata?.path, Toast.LENGTH_LONG).show()
+            //경로
+//            Toast.makeText(this, Imagedata?.path, Toast.LENGTH_LONG).show()
 
             //위도, 경도
 //            var path = createCopyAndReturnRealPath(Imagedata!!)
