@@ -237,6 +237,10 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item?.itemId) {
             R.id.signOut_button -> {
+                val i = Intent(this@MainActivity, AuthActivity::class.java)
+                startActivity(i)
+                finish()
+
 //                AWSMobileClient.getInstance().initialize(
 //                    applicationContext,
 //                    object : Callback<UserStateDetails?> {

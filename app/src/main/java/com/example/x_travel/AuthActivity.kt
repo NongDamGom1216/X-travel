@@ -9,11 +9,14 @@ import androidx.appcompat.app.AlertDialog
 import com.example.x_travel.databinding.ActivityAuthBinding
 import com.example.x_travel.databinding.ActivityConfirmBinding
 import kotlinx.android.synthetic.main.activity_auth.*
+import okhttp3.JavaNetCookieJar
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.net.CookieManager
 
 private lateinit var binding: ActivityAuthBinding
 
@@ -25,7 +28,12 @@ class AuthActivity : AppCompatActivity() {
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val client = OkHttpClient.Builder()
+            .cookieJar(JavaNetCookieJar(CookieManager())) //쿠키매니저 연결
+            .build()
+
         var retrofit = Retrofit.Builder()
+            .client(client)
             .baseUrl("http://121.172.82.110:8000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -49,10 +57,15 @@ class AuthActivity : AppCompatActivity() {
                     login = response.body()
                     Log.d("LOGIN","msg : "+login?.msg)
                     Log.d("LOGIN","code : "+login?.code)
-                    Toast.makeText(applicationContext, "환영합니다!", Toast.LENGTH_SHORT).show()
-                    val i = Intent(this@AuthActivity, MainActivity::class.java)
-                    startActivity(i)
-                    finish()
+                    if( login?.code == "0000") {
+                        Toast.makeText(applicationContext, "환영합니다!", Toast.LENGTH_SHORT).show()
+                        val i = Intent(this@AuthActivity, MainActivity::class.java)
+                        startActivity(i)
+                        finish()
+                    }
+                    else {
+                        Toast.makeText(applicationContext, "잘못된 정보입니다.", Toast.LENGTH_SHORT).show()
+                    }
                 }
             })
         }
