@@ -69,26 +69,26 @@ class MainActivity : AppCompatActivity() {
         val v2 = findViewById<View>(R.id.v2)
         val v3 = findViewById<View>(R.id.v3)
 
-        AmplifyInit().intializeAmplify(this@MainActivity)
+//        AmplifyInit().intializeAmplify(this@MainActivity)
 
-        // 로그인이 되어있는지 확인
-        AWSMobileClient.getInstance()
-            .initialize(applicationContext, object : Callback<UserStateDetails> {
-                override fun onResult(userStateDetails: UserStateDetails) {
-                    Log.i(TAG, userStateDetails.userState.toString())
-
-                    // 로그인이 안되어있으면 AuthActivity 로 이동
-                    if (userStateDetails.userState != UserState.SIGNED_IN) {
-                        val i = Intent(this@MainActivity, AuthActivity::class.java)
-                        startActivity(i)
-                        finish()
-                    }
-                }
-
-                override fun onError(e: Exception) {
-                    Log.e(TAG, e.toString())
-                }
-            })
+//        // 로그인이 되어있는지 확인
+//        AWSMobileClient.getInstance()
+//            .initialize(applicationContext, object : Callback<UserStateDetails> {
+//                override fun onResult(userStateDetails: UserStateDetails) {
+//                    Log.i(TAG, userStateDetails.userState.toString())
+//
+//                    // 로그인이 안되어있으면 AuthActivity 로 이동
+//                    if (userStateDetails.userState != UserState.SIGNED_IN) {
+//                        val i = Intent(this@MainActivity, AuthActivity::class.java)
+//                        startActivity(i)
+//                        finish()
+//                    }
+//                }
+//
+//                override fun onError(e: Exception) {
+//                    Log.e(TAG, e.toString())
+//                }
+//            })
 
 
         v1.setOnClickListener {
@@ -237,19 +237,19 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item?.itemId) {
             R.id.signOut_button -> {
-                AWSMobileClient.getInstance().initialize(
-                    applicationContext,
-                    object : Callback<UserStateDetails?> {
-                        override fun onResult(userStateDetails: UserStateDetails?) {
-                            // 로그아웃 후 로그인 창으로 이동
-                            AWSMobileClient.getInstance().signOut()
-                            val i = Intent(this@MainActivity, AuthActivity::class.java)
-                            startActivity(i)
-                            finish()
-                        }
-
-                        override fun onError(e: Exception) {}
-                    })
+//                AWSMobileClient.getInstance().initialize(
+//                    applicationContext,
+//                    object : Callback<UserStateDetails?> {
+//                        override fun onResult(userStateDetails: UserStateDetails?) {
+//                            // 로그아웃 후 로그인 창으로 이동
+//                            AWSMobileClient.getInstance().signOut()
+//                            val i = Intent(this@MainActivity, AuthActivity::class.java)
+//                            startActivity(i)
+//                            finish()
+//                        }
+//
+//                        override fun onError(e: Exception) {}
+//                    })
                 return true
             }
         }

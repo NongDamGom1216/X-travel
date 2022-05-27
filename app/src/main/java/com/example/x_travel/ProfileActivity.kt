@@ -11,6 +11,7 @@ import com.amazonaws.mobile.client.Callback
 import com.amazonaws.mobile.client.UserStateDetails
 import com.example.x_travel.databinding.ActivityMainBinding
 import com.example.x_travel.databinding.ActivityProfileBinding
+import kotlinx.android.synthetic.main.activity_auth.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
@@ -22,17 +23,18 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        var login:Login? = null
 
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = AWSMobileClient.getInstance()
-        binding.accountName.text = auth.username.toString()
+//        auth = AWSMobileClient.getInstance()
+//        binding.accountName.text = login_id.text
 
-        binding.btnLogout.setOnClickListener {
-            logout_function()
-        }
+//        binding.btnLogout.setOnClickListener {
+//            logout_function()
+//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -52,18 +54,18 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     fun logout_function(){
-        AWSMobileClient.getInstance().initialize(
-            applicationContext,
-            object : Callback<UserStateDetails?> {
-                override fun onResult(userStateDetails: UserStateDetails?) {
-                    // 로그아웃 후 로그인 창으로 이동
-                    AWSMobileClient.getInstance().signOut()
-                    val i = Intent(this@ProfileActivity, AuthActivity::class.java)
-                    startActivity(i)
-                    finish()
-                }
-
-                override fun onError(e: Exception) {}
-            })
+//        AWSMobileClient.getInstance().initialize(
+//            applicationContext,
+//            object : Callback<UserStateDetails?> {
+//                override fun onResult(userStateDetails: UserStateDetails?) {
+//                    // 로그아웃 후 로그인 창으로 이동
+//                    AWSMobileClient.getInstance().signOut()
+//                    val i = Intent(this@ProfileActivity, AuthActivity::class.java)
+//                    startActivity(i)
+//                    finish()
+//                }
+//
+//                override fun onError(e: Exception) {}
+//            })
     }
 }

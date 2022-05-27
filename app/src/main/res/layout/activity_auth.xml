@@ -90,11 +90,11 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:gravity="center"
-        android:text="X-travel"
+        android:text="X-memory"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#76ABD5"
-        android:textSize="96sp"
+        android:textSize="85sp"
         android:textStyle="bold|italic" />
 
 </RelativeLayout>
